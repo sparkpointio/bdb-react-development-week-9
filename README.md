@@ -6,16 +6,17 @@ _This only applies to students enrolled in **SparkPoint Academy's** [Blockchain 
 
 ## Setup
 1. Fork this repository, and clone it on your end.
-2. Ask for the `.env` file from BDB Mentor,  [Harvz](https://github.com/harveyjavier) via Slack DM.
-3. Upon receiving the `.env` file, place it in the root folder of the project. Then you can now use `process.env.REACT_APP_ROPSTEN_API_KEY`. This will call the API key from the .env file.
-4. Here's the API you're going to use for Ropsten:
+2. Run `npm install` to generate your `node_modules` folder and download all necessary packages.
+3. Ask for the `.env` file from BDB Mentor,  [Harvz](https://github.com/harveyjavier) via Slack DM.
+4. Upon receiving the `.env` file, place it in the root folder of the project. Then you can now use `process.env.REACT_APP_ROPSTEN_API_KEY`. This will call the API key from the .env file.
+5. Here's the API you're going to use for Ropsten:
 	- For ETH / normal transactions: `https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort="desc"&apikey=${process.env.REACT_APP_ROPSTEN_API_KEY}`
 	- For ERC-20 token transactions: `https://api-ropsten.etherscan.io/api?module=account&action=tokentx&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort="desc"&apikey=${process.env.REACT_APP_ROPSTEN_API_KEY}`
 
 	_Default endpoint values were already provided except for the dynamic ones which are enclosed by `${}`._
-5. You can either use `fetch()`, `axios`, or any other third-party API call libraries of your choice.
-6. Once you've successfully fetched the API, return it on your console via `console.log()` to check the object properties.
-7. Some jargons or confusions you may encounter with the returned object properties of the API:
+6. You can either use `fetch()`, `axios`, or any other third-party API call libraries of your choice.
+7. Once you've successfully fetched the API, return it on your console via `console.log()` to check the object properties.
+9. Some jargons or confusions you may encounter with the returned object properties of the API:
 	- `value` (_String_) - The value property by default is displayed in `gwei`. To convert it to `ether`, just divide it to `1e18`. 18 is the default and standard decimal place for ETH. Same as other ERC-20 tokens, but sometimes they have different decimals. Just double check the `tokenDecimal` property.
 
 		Example:
@@ -33,8 +34,8 @@ _This only applies to students enrolled in **SparkPoint Academy's** [Blockchain 
 	let readableDate = new Date(Number(timestamp)).toISOString();
 	console.log(readableDate); // output would be "1970-01-19T20:24:46.135Z"
 	```
-8. To run the project, make sure you're currently in your root folder of the project in your command line and run: `npm start`.
-9. Apply all the things you've learned from Week 7 to 9, and create a beautiful UI for Ropsten transactions. Be creative, and happy coding!
+9. To run the project, make sure you're currently in your root folder of the project in your command line and run: `npm start`.
+10. Apply all the things you've learned from Week 7 to 9, and create a beautiful UI for Ropsten transactions. Be creative, and happy coding!
 
 ## Sample Output
 
