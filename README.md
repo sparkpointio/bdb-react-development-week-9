@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# BDB React Development - Week 9 Final Exercise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For week 9 and your final exercise for this course, create a simple UI for Ropsten transactions. API will be provided in the instructions below. You may test using your address used earlier in the solidity course, making sure it’s not an address with empty transactions, else you may get some drip of eth on https://faucet.ropsten.be/
 
-## Available Scripts
+_This only applies to students enrolled in **SparkPoint Academy's** [Blockchain Developer Bootcamp 2021](https://sparkpoint.io/bootcamp)_
 
-In the project directory, you can run:
+## Setup
+1. Fork this repository, and clone it on your end.
+2. Ask for the `.env` file from BDB Mentor,  [Harvz](https://github.com/harveyjavier) via Slack DM.
+3. Upon receiving the `.env` file, place it in the root folder of the project. Then you can now use `process.env.REACT_APP_ROPSTEN_API_KEY`. This will call the API key from the .env file.
+4. Here's the API you're going to use for Ropsten:
+	- For ETH / normal transactions: `https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort="desc"&apikey=${process.env.REACT_APP_ROPSTEN_API_KEY}`
+	- For ERC-20 token transactions: `https://api-ropsten.etherscan.io/api?module=account&action=tokentx&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort="desc"&apikey=${process.env.REACT_APP_ROPSTEN_API_KEY}`
 
-### `npm start`
+	_Default endpoint values were already provided except for the dynamic ones which are enclosed by `${}`._
+5. You can either use `fetch()`, `axios`, or any other third-party API call libraries of your choice.
+6. Once you've successfully fetched the API, return it on your console via `console.log()` to check the object properties.
+7. Some jargons or confusions you may encounter with the returned object properties of the API:
+	- `value` (_String_) - The value property by default is displayed in `gwei`. To convert it to `ether`, just divide it to `1e18`. 18 is the default and standard decimal place for ETH. Same as other ERC-20 tokens, but sometimes they have different decimals. Just double check the `tokenDecimal` property.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+		Example:
+	```
+	let testGwei = "300000000000000000";
+	let testEther = Number(testGwei) / 1e18 ;
+	console.log(testEther); // output would be 0.3 in ether
+	```
+	_You'll learn more about this in the next course, Web3js._
+	- `timestamp` (_String_) - A timestamp is a sequence of characters or encoded information identifying when a certain event occurred. To convert it to a readable date, use this basic JavaScript's `new Date().toISOString()` method. Make sure the timestamp being passed as argument in the Date function is a `number` data type.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+		Example:
+	```	
+	let testTimestamp = "1628686135";
+	let readableDate = new Date(Number(timestamp)).toISOString();
+	console.log(readableDate); // output would be "1970-01-19T20:24:46.135Z"
+	```
+8. To run the project, make sure you're currently in your root folder of the project in your command line and run: `npm start`.
+9. Apply all the things you've learned from Week 7 to 9, and create a beautiful UI for Ropsten transactions. Be creative, and happy coding!
 
-### `npm test`
+## Sample Output
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
