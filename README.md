@@ -38,4 +38,7 @@ _This only applies to students enrolled in **SparkPoint Academy's** [Blockchain 
 10. Apply all the things you've learned from Week 7 to 9, and create a beautiful UI for Ropsten transactions. Be creative, and happy coding!
 
 ## Sample Output
-https://github.com/sparkpointio/bdb-react-development-week-9/blob/master/src/sample-output.gif?raw=true
+
+![Demo](https://github.com/sparkpointio/bdb-react-development-week-9/blob/master/src/sample-output.gif)
+
+_This is just an example. You can make it more creative!_
