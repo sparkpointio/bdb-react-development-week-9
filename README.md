@@ -45,7 +45,7 @@ _This only applies to students enrolled in **SparkPoint Academy's** [Blockchain 
 12. You can also start committing and pushing your changes. And you can ping mentor [Harvz](https://github.com/harveyjavier) via Slack DM if your output is done.
 	```
 	git branch                       // check and make sure you are in john-doe branch
-	git add .    		            // this will add all your files or you can add individually: git add src/index.js
+	git add .    		          // this will add all your files or you can add individually: git add src/index.js
 	git commit -m "Fix app issues"   // add your commit message. it should be relevant and specific
 	git push                         // push the changes, but initially you may have to: git push --set-upstream origin john-doe
 	```
