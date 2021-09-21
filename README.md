@@ -2,7 +2,7 @@
 
 For week 9 and your final exercise for this course, create a simple UI for Ropsten transactions. API will be provided in the instructions below. You may test using your address used earlier in the solidity course, making sure it’s not an address with empty transactions, else you may get some drip of eth on https://faucet.ropsten.be/
 
-_This only applies to students enrolled in **SparkPoint Academy's** [Blockchain Developer Bootcamp 2021](https://sparkpoint.io/bootcamp)_
+_This only applies to students enrolled in **SparkLearn's** [Blockchain Developer Bootcamp 2021](https://sparkpoint.io/bootcamp)_
 
 ## Setup
 1. Clone this repository by running `git clone https://github.com/integrations/slack.git`
