@@ -5,7 +5,7 @@ For week 9 and your final exercise for this course, create a simple UI for Ropst
 _This only applies to students enrolled in **SparkLearn's** [Blockchain Developer Bootcamp 2021](https://sparkpoint.io/bootcamp)_
 
 ## Setup
-1. Clone this repository by running `git clone https://github.com/integrations/slack.git`
+1. Clone this repository by running `git clone https://github.com/sparkpointio/bdb-react-development-week-9.git`
 2. Create your own branch using this format (firstname-lastname), checkout, and make sure you are not on `master` branch.
 	```
 	git branch john-doe    // create branch using firstname-lastname format
