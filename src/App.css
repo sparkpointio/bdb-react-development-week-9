@@ -38,3 +38,30 @@
   background: #777;
   box-shadow: 0 0 2px rgb(119, 119, 119);
 }
+
+.app-trans-btn {
+  display: inline-block;
+  border: 1px solid #999;
+  margin: 0;
+  text-decoration: none;
+  color: #999;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.app-trans-btn:hover,
+.app-trans-btn:focus {
+  background: #999;
+  color: #fff;
+}
+
+.app-trans-btn.active {
+  background: #999;
+  color: #fff;
+}
+
+.app-input.error {
+  border: 1px solid red !important;
+}
