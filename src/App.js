@@ -1,5 +1,6 @@
-import axios from 'axios';
-import { useState } from 'react';
+import axios from 'axios'
+import { useState } from 'react'
+import DayJS from 'react-dayjs'
 import './App.css';
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
         })
     }
 
-    const search = (e) => {
+    const search = e => {
         e.preventDefault()
         let data = document.getElementById("addressText").value
         let regex = /^0x[a-fA-F0-9]{40}$/i
@@ -50,8 +51,16 @@ function App() {
         }
     }
 
-    const fetchTransaction = (type) => {
+    const fetchTransaction = type => {
         (type === 1) ? fetchRopstenTxs() : fetchRopstenERC20Txs()
+    }
+
+    const convEth = wei => {
+        return Number(wei) / 1e18
+    }
+
+    const dateConv = timestamp => {
+        return new Date(Number(timestamp)).toISOString()
     }
 
     return (
