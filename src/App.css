@@ -65,3 +65,18 @@
 .app-input.error {
   border: 1px solid red !important;
 }
+
+.transactions-table th {
+  text-align: center;
+  background-color: #999;
+  color: #fff;
+}
+
+.transactions-table td a {
+  color: #333;
+}
+
+.transactions-table td a:hover,
+.transactions-table td a:focus {
+  color: #555;
+}
