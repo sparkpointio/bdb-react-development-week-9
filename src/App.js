@@ -21,6 +21,7 @@ function App() {
                 setIsSearched(true)
                 setAddressHasError(false)
                 fetchRopstenTxs()
+                fetchRopstenERC20Txs()
             } else {
                 setIsSearched(false)
                 setAddressHasError(true)
@@ -32,34 +33,27 @@ function App() {
     }
 
     const fetchRopstenTxs = () => {
-        setIsActiveBtn(1)
         let urlETH = `https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort="desc"&apikey=${process.env.REACT_APP_ROPSTEN_API_KEY}`
-        console.log(urlETH)
         axios.get(urlETH).then(res => {
             setTxData(res.data.result)
         })
+        console.log(txData)
     }
 
     const fetchRopstenERC20Txs = () => {
-        setIsActiveBtn(2)
         let urlERC20 = `https://api-ropsten.etherscan.io/api?module=account&action=tokentx&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort="desc"&apikey=${process.env.REACT_APP_ROPSTEN_API_KEY}`
-
         axios.get(urlERC20).then(res => {
             setTxErcData(res.data.result)
-            console.log(txErcData)
         })
+        console.log(txErcData)
     }
 
     const fetchTransaction = type => {
-        (type === 1) ? fetchRopstenTxs() : fetchRopstenERC20Txs()
+        (type === 1) ? setIsActiveBtn(1) : setIsActiveBtn(2)
     }
 
     const convEth = wei => {
         return Number(wei) / 1e18
-    }
-
-    const dateConv = timestamp => {
-        return new Date(Number(timestamp)).toISOString()
     }
 
     const shortenAddress = (address, prefixCount, postfixCount) => {
@@ -103,7 +97,6 @@ function App() {
                                         <th>From</th>
                                         <th>To</th>
                                         <th>Amount</th>
-                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -114,17 +107,39 @@ function App() {
                                             <td><a href={`${url}/address/${x.from}`} target="_blank" noreferrer>{shortenAddress(x.from, 15, 10)}</a></td>
                                             <td><a href={`${url}/address/${x.to}`} target="_blank" noreferrer>{shortenAddress(x.to, 15, 10)}</a></td>
                                             <td>{convEth(x.value)}ETH</td>
-                                            <td>{dateConv(x.timeStamp)}</td>
                                         </tr>
                                     )) : (
                                         <tr>
-                                            <td className="text-center" colSpan="6">No transaction/s found</td>
+                                            <td className="text-center" colSpan="5">No transaction/s found</td>
                                         </tr>
                                     )}
                                 </tbody>
                             </table>
                         ) : (
-                            <div></div>
+                            <table className="table table-condensed transactions-table w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Tx Hash</th>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {txErcData.length > 0 ? txErcData.map((x, k) => (
+                                        <tr key={k}>
+                                            <td><a href={`${url}/tx/${x.hash}`} target="_blank" rel="noreferrer">{shortenAddress(x.hash, 15, 15)}</a></td>
+                                            <td><a href={`${url}/address/${x.from}`} target="_blank" rel="noreferrer">{shortenAddress(x.from, 15, 10)}</a></td>
+                                            <td><a href={`${url}/address/${x.to}`} target="_blank" rel="noreferrer">{shortenAddress(x.to, 15, 10)}</a></td>
+                                            <td>{convEth(x.value)}ETH</td>
+                                        </tr>
+                                    )) : (
+                                        <tr>
+                                            <td className="text-center" colSpan="5">No transaction/s found</td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
                         )}
                     </div>
                 )}
